@@ -2,10 +2,12 @@
 import sqlite3
 conn = sqlite3.connect("treker.db")
 cursor = conn.cursor()
-#cursor.execute('CREATE TABLE `events` ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, `host_id` INTEGER NOT NULL, `event` TEXT, `time` TEXT NOT NULL )')
+cursor.execute('CREATE TABLE ...')
+#CREATE TABLE `hosts` ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, `url` TEXT, `msg` TEXT )
+#CREATE TABLE `events` ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, `host_id` INTEGER NOT NULL, `event` TEXT, `time` TEXT NOT NULL )
 conn.commit()
 
-hosts = [['http://goo123gle.com/'],['https://ya123ndex.ru/path']]
+hosts = [['http://google.com/'],['www.your_url.com']]
 cursor.executemany("INSERT INTO hosts (url, msg) VALUES (?, 'New')", hosts)
 
 import sqlite3
@@ -20,7 +22,7 @@ class NoRedirectHandler(request.HTTPRedirectHandler):
 noRedirect = request.build_opener(NoRedirectHandler)
 
 def tg_send(msg):
-	base_url = 'https://api.telegram.org/bot5847088472:AAFhBICQDEsVXshi1Y4FFXIm_2_G8wp83qk/sendMessage?chat_id=https://api.telegram.org/bot5847088472:AAFhBICQDEsVXshi1Y4FFXIm_2_G8wp83qk/sendMessage?chat_id=-1001871652499&text=&text='
+	base_url = 'https://api.telegram.org/botTOKEN/sendMessage?chat_id=123456&text=' #TOKEN - your API-TOKEN; 123456 - your chat ID
 	return urlopen(base_url+parse.quote_plus(msg)).status
 
 conn = sqlite3.connect("treker.db")
